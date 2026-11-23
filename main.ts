@@ -40,6 +40,7 @@ police = sprites.create(img`
     . . . 8 8 8 8 8 8 . . . . 
     . . . 8 8 . . 8 8 . . . . 
     `, SpriteKind.Enemy)
+police.follow(thief)
 let projectile = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . f f f f f f . . . . . . . 
@@ -69,7 +70,7 @@ projectile = sprites.createProjectileFromSprite(img`
     . . . f 5 5 5 5 f . . . . . . . 
     . . f 5 f f f f 5 f . . . . . . 
     . f 5 f . . . . f 5 f . . . . . 
-    . f 5 f . . . . f 5 f . . . . . 
+    . f 5 f . . . . f 5 f . . . . 3 
     . f 5 f . . . . f 5 f . . . . . 
     . f 5 f . . . . f 5 f . . . . . 
     . . f 5 f f f f 5 f . . . . . . 
@@ -77,7 +78,4 @@ projectile = sprites.createProjectileFromSprite(img`
     . . . . f f f f . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    `, projectile, randint(-50, 50), randint(-50, 50))
-game.onUpdateInterval(500, function () {
-	
-})
+    `, projectile, randint(0, 160), randint(0, 120))
