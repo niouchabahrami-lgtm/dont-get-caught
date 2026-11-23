@@ -1,8 +1,10 @@
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
 	
 })
-let projectile: Sprite = null
-let thief = sprites.create(img`
+let thief: Sprite = null
+let police: Sprite = null
+police.follow(thief)
+thief = sprites.create(img`
     . . . . . . f f f f . . . . . . 
     . . . . f f f 2 2 f f f . . . . 
     . . . f f f 2 2 2 2 f f f . . . 
@@ -20,7 +22,7 @@ let thief = sprites.create(img`
     . . . . . f f f f f f . . . . . 
     . . . . . f f . . f f . . . . . 
     `, SpriteKind.Player)
-let police = sprites.create(img`
+police = sprites.create(img`
     . . . . f f f f . . . . . 
     . . f f f f f f f f . . . 
     . f f f f f f c f f f . . 
@@ -37,26 +39,45 @@ let police = sprites.create(img`
     e e f 8 8 8 8 8 8 f e e . 
     . . . 8 8 8 8 8 8 . . . . 
     . . . 8 8 . . 8 8 . . . . 
-    `, SpriteKind.Player)
+    `, SpriteKind.Enemy)
+let projectile = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . f f f f f f . . . . . . . 
+    . . f 9 9 9 9 9 9 f . . . . . . 
+    . . . f 6 6 6 6 f . . . . . . . 
+    . . . . f 9 9 f . . . . . . . . 
+    . . . f 5 5 5 5 f . . . . . . . 
+    . . f 5 f f f f 5 f . . . . . . 
+    . f 5 f . . . . f 5 f . . . . . 
+    . f 5 f . . . . f 5 f . . . . . 
+    . f 5 f . . . . f 5 f . . . . . 
+    . f 5 f . . . . f 5 f . . . . . 
+    . . f 5 f f f f 5 f . . . . . . 
+    . . . f 5 5 5 5 f . . . . . . . 
+    . . . . f f f f . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Food)
 controller.moveSprite(thief)
 thief.setStayInScreen(true)
+projectile = sprites.createProjectileFromSprite(img`
+    . . . . . . . . . . . . . . . . 
+    . . . f f f f f f . . . . . . . 
+    . . f 9 9 9 9 9 9 f . . . . . . 
+    . . . f 6 6 6 6 f . . . . . . . 
+    . . . . f 9 9 f . . . . . . . . 
+    . . . f 5 5 5 5 f . . . . . . . 
+    . . f 5 f f f f 5 f . . . . . . 
+    . f 5 f . . . . f 5 f . . . . . 
+    . f 5 f . . . . f 5 f . . . . . 
+    . f 5 f . . . . f 5 f . . . . . 
+    . f 5 f . . . . f 5 f . . . . . 
+    . . f 5 f f f f 5 f . . . . . . 
+    . . . f 5 5 5 5 f . . . . . . . 
+    . . . . f f f f . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, projectile, randint(-50, 50), randint(-50, 50))
 game.onUpdateInterval(500, function () {
-    projectile = sprites.createProjectileFromSprite(img`
-        . . . . . . . . . . . . . . . . 
-        . . . f f f f f f . . . . . . . 
-        . . f 9 9 9 9 9 9 f . . . . . . 
-        . . . f 6 6 6 6 f . . . . . . . 
-        . . . . f 9 9 f . . . . . . . . 
-        . . . f 5 5 5 5 f . . . . . . . 
-        . . f 5 f f f f 5 f . . . . . . 
-        . f 5 f . . . . f 5 f . . . . . 
-        . f 5 f . . . . f 5 f . . . . . 
-        . f 5 f . . . . f 5 f . . . . . 
-        . f 5 f . . . . f 5 f . . . . . 
-        . . f 5 f f f f 5 f . . . . . . 
-        . . . f 5 5 5 5 f . . . . . . . 
-        . . . . f f f f . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `, projectile, randint(-50, 50), randint(-50, 50))
+	
 })
